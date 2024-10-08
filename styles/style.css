@@ -1,0 +1,153 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+header {
+    background: white;
+    color: #8f1814;
+}
+
+.nav-link {
+    color: #8f1814;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+.hero {
+    height: 100vh;
+    background: url('../img/bg.jpg') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 20px;
+}
+
+.hero-overlay {
+    background: rgba(0, 0, 0, 0.8); /* Dark overlay */
+    top: 0;
+    left: 0;
+}
+
+.hero-text {
+    max-width: 50%;
+    color: white;
+    padding: 20px;
+    z-index: 1000;
+    text-align: justify;
+    animation: fadeIn2 1s ease;
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero-text .highlight {
+    color: #8f1814;
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.hero-text i {
+    color: #8f1814;
+    margin-right: 10px;
+}
+
+.hero-image {
+    max-width: 45%;
+    z-index: 1000;
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.animate-img {
+    animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn2 {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+footer {
+    background: #8f1814;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .hero-text {
+        max-width: 100%;
+        padding: 10px;
+    }
+    
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-text p {
+        font-size: 1rem;
+    }
+    
+    .hero-image {
+        max-width: 80%;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-text p {
+        font-size: 0.9rem;
+    }
+    
+    .hero-image {
+        max-width: 100%;
+    }
+    
+    .hero-image img {
+        border-radius: 10px;
+        box-shadow: none;
+    }
+}
