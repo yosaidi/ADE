@@ -1,4 +1,8 @@
-
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ade ziri oujda</title>    <!-- Bootstrap CSS CDN -->
-    <link rel="icon" href="img/logo.jpg" type="image/x-icon">    <!-- Bootstrap CSS CDN -->
+    <link rel="icon" href="img/logo.jpg" type="image/x-icon">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -34,31 +38,60 @@
                 <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
                 <li class="nav-item"><a class="nav-link" href="clubs.php">Clubs</a></li>
                 <li class="nav-item"><a class="nav-link" href="partners.html">Partners</a></li>
-                <li class="nav-item"><a class="nav-link" href="ticketing.html">ticketing</a></li>
+                <li class="nav-item"><a class="nav-link" href="ticketing.html">Ticketing</a></li>
                 <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
             </ul>
         </div>
     </nav>
 </header>
 
+    <!-- Clubs Section -->
+    <section id="clubs" class="clubs-section py-5">
+        <div class="container">
+            <h2 >Our Clubs</h2>
+            <div class="club-grid row">
+                <?php
+                // Database connection (replace with your database credentials)
+                $dsn = 'mysql:host=localhost;dbname=clubs;charset=utf8mb4';
+                $username = 'root';
+                $password = 'younes1629';
 
-    <!-- Hero Section with Left Content and Right Image -->
-    <section id="home" class="hero position-relative">
-        <div class="hero-overlay position-absolute w-100 h-100"></div>
-        <div class="container d-flex align-items-center justify-content-between">
-            <!-- Left: Description with Icons -->
-            <div class="hero-text">
-                <h1>Welcome to <span class="highlight">ADE ZIRI ENCGO</span></h1>
-                <p><i class="fas fa-graduation-cap"></i> Empowering students through both academic and extracurricular activities.</p>
-                <p><i class="fas fa-users"></i> Join our clubs and enrich your student life!</p>
-                <div class="btn-group">
-                    <a href="clubs.php" class="btn btn-primary btn-lg">Explore Clubs</a>
-                    <a href="events.html" class="btn btn-upcoming-events btn-lg">Upcoming Events</a>
-                </div>
-            </div>
-            <!-- Right: Image with Animation -->
-            <div class="hero-image">
-                <img src="img/othmane-sbe3.jpg" alt="ENCGO Student Association" class="img-fluid animate-img">
+                try {
+                    $conn = new PDO($dsn, $username, $password);
+                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                    // SQL query to fetch all clubs
+                    $sql = "SELECT club_name, img_path, instagram_link FROM clubs";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->execute();
+
+                    // Check if there are any results
+                    if ($stmt->rowCount() > 0) {
+                        // Output data for each club
+                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            // Sanitize output to prevent XSS
+                            $clubName = htmlspecialchars($row["club_name"]);
+                            $imgPath = htmlspecialchars($row["img_path"]);
+                            $instagramLink = htmlspecialchars($row["instagram_link"]);
+                        
+                            echo '<div class="club-card col-md-3 text-center">';
+                            echo '<img src="' . $imgPath . '" alt="' . $clubName . ' Logo" class="img-fluid mb-3">';
+                            echo '<h4>' . $clubName . '</h4>';
+                            echo '<a href="' . $instagramLink . '" target="_blank" class="btn btn-outline-primary">Instagram Page</a>';
+                            echo '</div>';
+                        }
+                        
+                    } else {
+                        echo '<p>No clubs found.</p>';
+                    }
+
+                } catch (PDOException $e) {
+                    echo "Connection failed: " . $e->getMessage();
+                }
+
+                // Close the connection
+                $conn = null;
+                ?>
             </div>
         </div>
     </section>
