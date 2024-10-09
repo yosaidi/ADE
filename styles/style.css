@@ -37,7 +37,7 @@ header {
 
 /* Hero Section */
 .hero {
-    height: 100vh;
+    height: 120vh;
     background: url('../img/bg.jpg') no-repeat center center/cover;
     display: flex;
     align-items: center;
@@ -229,4 +229,56 @@ header {
         opacity: 1;
         transform: translateX(0);
     }
+}
+
+/* About Us Section */
+.about-us-section {
+    background-color: #ffffff;
+    padding: 60px 0;
+}
+
+.about-us-section .col-lg-6 {
+    background-color: #ffffff; /* Set background to match the section */
+    padding: 20px; /* Add some padding for spacing */
+}
+
+img.img-fluid {
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional: Reduce shadow for subtlety */
+}
+
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.highlight {
+    color: #dc3545;
+}
+
+.lead {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+ul.list-unstyled {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+ul.list-unstyled li {
+    margin-bottom: 10px;
+}
+
+ul.list-unstyled i {
+    color: #dc3545;
+    margin-right: 10px;
+}
+
+img.img-fluid {
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
